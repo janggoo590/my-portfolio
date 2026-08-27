@@ -4,12 +4,11 @@ import { createTheme } from '@mui/material/styles';
  * MUI 테마
  *
  * "컬러 팔레트 디자인 시스템.md" 에서 추출한 CSS 변수 값을 MUI palette 로 매핑한다.
- * 배경은 화이트(#fff) 라이트 모드를 사용하며, Primary(라임)/Secondary(라벤더)는
- * 팔레트 가이드에 따라 라이트 모드에서도 채도를 유지해 브랜드 정체성을 지킨다.
+ * 원본 디자인이 블랙 베이스이므로 mode 는 'dark' 를 기본값으로 사용한다.
  */
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
       main: '#ddff50',
       light: '#e9ff8d',
@@ -23,14 +22,13 @@ const theme = createTheme({
       contrastText: '#0b0b0b',
     },
     background: {
-      default: '#ffffff',
-      paper: '#f5f5f5',
+      default: '#0b0b0b',
+      paper: '#191919',
     },
     text: {
-      primary: '#0b0b0b',
-      secondary: '#5f5f5f',
+      primary: '#ffffff',
+      secondary: '#919191',
     },
-    divider: 'rgba(11, 11, 11, 0.12)',
   },
   typography: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',

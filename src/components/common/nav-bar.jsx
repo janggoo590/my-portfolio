@@ -42,7 +42,7 @@ function NavBar() {
       sx={{
         bgcolor: 'background.paper',
         borderBottom: '1px solid',
-        borderColor: 'divider',
+        borderColor: 'rgba(255, 255, 255, 0.08)',
       }}
     >
       <Container maxWidth="lg" sx={{ px: { xs: 2, md: 3 } }}>

@@ -32,7 +32,7 @@ function SectionCard({ index, title, description, accent = 'primary', isFilled =
         width: '100%',
         borderRadius: 3,
         border: '1px solid',
-        borderColor: isFilled ? accentColor : 'divider',
+        borderColor: isFilled ? accentColor : 'rgba(255, 255, 255, 0.1)',
         bgcolor: isFilled ? accentColor : 'background.paper',
         color: isFilled ? `${accent}.contrastText` : 'text.primary',
       }}
@@ -69,7 +69,7 @@ function SectionCard({ index, title, description, accent = 'primary', isFilled =
           sx={{
             fontSize: { xs: '1rem', md: '1.125rem' },
             lineHeight: 1.6,
-            color: isFilled ? `${accent}.contrastText` : 'text.secondary',
+            color: isFilled ? `${accent}.contrastText` : 'grey.300',
           }}
         >
           {description}

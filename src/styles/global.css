@@ -1,9 +1,9 @@
 /**
  * 전역 스타일 + 컬러 팔레트 디자인 시스템
  *
- * 컬러 변수는 "컬러 팔레트 디자인 시스템.md" (AI SEARCH OPTIMIZATION LAB
- * 이미지 분석 결과) 에서 추출한 값을 그대로 옮긴 것이다.
- * 원본 디자인이 블랙 베이스이므로 다크 테마가 기본값이다.
+ * 컬러 변수는 "컬러 팔레트 디자인 시스템.md"
+ * (AI SEARCH OPTIMIZATION LAB by MASSTIGE 이미지 분석 결과) 에서 추출한 값이다.
+ * 원본은 화이트 베이스 + 다크 섹션 블록 구조이므로 라이트 테마가 기본값이다.
  */
 
 :root {
@@ -17,19 +17,33 @@
   --color-accent: #cab8f6;
 
   /* Background Colors */
-  --color-bg-primary: #0b0b0b;
-  --color-bg-secondary: #191919;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f7f7f5;
+  --color-bg-dark: #0b0b0b;
+  --color-bg-dark-elevated: #191919;
 
   /* Text Colors */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #0b0b0b;
-  --color-text-muted: #919191;
+  --color-text-primary: #0b0b0b;
+  --color-text-secondary: #ffffff;
+  --color-text-muted: #8a8a8a;
+
+  /* Border Colors */
+  --color-border: #ecedea;
+  --color-border-strong: #e5e5e5;
+  --color-border-on-dark: rgba(255, 255, 255, 0.1);
 
   /* Interactive Colors */
   --color-button-primary: #ddff50;
-  --color-button-hover: #bcd944;
-  --color-link: #cab8f6;
-  --color-link-hover: #a293c5;
+  --color-button-hover: #c7e63f;
+  --color-button-dark: #0b0b0b;
+  --color-link: #a293c5;
+  --color-link-hover: #7a6ba8;
+
+  /* 보조 파스텔 액센트 (일러스트/소형 카드 전용) */
+  --color-accent-cyan: #7fe0f0;
+  --color-accent-blue: #a8c7ff;
+  --color-accent-peach: #ffcba9;
+  --color-accent-mint: #7fe0c1;
 }
 
 /* CSS 초기화 */
@@ -65,4 +79,18 @@ a {
 
 a:hover {
   color: var(--color-link-hover);
+}
+
+/* 다크모드: 배경/텍스트/테두리 변수만 교체, Primary/Accent 는 채도 유지 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-primary: #0b0b0b;
+    --color-bg-secondary: #191919;
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #0b0b0b;
+    --color-border: rgba(255, 255, 255, 0.1);
+    --color-border-strong: rgba(255, 255, 255, 0.16);
+    --color-link: #cab8f6;
+    --color-link-hover: #e0d6fb;
+  }
 }

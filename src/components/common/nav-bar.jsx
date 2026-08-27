@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Tabs from '@mui/material/Tabs';
@@ -11,6 +12,7 @@ import Tab from '@mui/material/Tab';
  *
  * 상단 고정 네비게이션. Home / About Me / Projects 3개 탭을 제공하며
  * 현재 경로에 맞는 탭을 활성화한다. 탭 클릭 시 React Router 로 이동한다.
+ * 화이트 베이스 팔레트에 맞춰 흰 배경 + 얇은 하단 테두리, 블랙 텍스트를 사용한다.
  *
  * Props: 없음
  *
@@ -40,9 +42,9 @@ function NavBar() {
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: 'background.paper',
+        bgcolor: 'background.default',
         borderBottom: '1px solid',
-        borderColor: 'rgba(255, 255, 255, 0.08)',
+        borderColor: 'border.light',
       }}
     >
       <Container maxWidth="lg" sx={{ px: { xs: 2, md: 3 } }}>
@@ -56,17 +58,33 @@ function NavBar() {
             py: { xs: 1.5, sm: 0 },
           }}
         >
-          <Typography
-            variant="h6"
+          <Box
             sx={{
-              fontWeight: 700,
-              color: 'primary.main',
-              textAlign: { xs: 'center', sm: 'left' },
-              fontSize: { xs: '1.1rem', md: '1.25rem' },
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              justifyContent: { xs: 'center', sm: 'flex-start' },
             }}
           >
-            My Portfolio
-          </Typography>
+            <Box
+              sx={{
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                bgcolor: 'primary.main',
+              }}
+            />
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: 700,
+                color: 'text.primary',
+                fontSize: { xs: '1.1rem', md: '1.25rem' },
+              }}
+            >
+              My Portfolio
+            </Typography>
+          </Box>
 
           <Tabs
             value={currentPath}
@@ -80,7 +98,7 @@ function NavBar() {
                 fontWeight: 600,
                 minHeight: 48,
               },
-              '& .MuiTab-root.Mui-selected': { color: 'primary.main' },
+              '& .MuiTab-root.Mui-selected': { color: 'text.primary' },
               '& .MuiTabs-indicator': { backgroundColor: 'primary.main', height: 3 },
             }}
           >

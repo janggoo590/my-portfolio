@@ -27,14 +27,24 @@ function HomePage() {
           sx={{
             fontSize: { xs: '2rem', md: '3rem' },
             fontWeight: 700,
-            color: 'primary.main',
+            color: 'text.primary',
           }}
         >
           Portfolio Home
         </Typography>
+        <Box
+          sx={{
+            width: 56,
+            height: 4,
+            borderRadius: 2,
+            bgcolor: 'primary.main',
+            mx: 'auto',
+            mt: 1.5,
+          }}
+        />
         <Typography
           sx={{
-            mt: 1,
+            mt: 1.5,
             fontSize: { xs: '0.95rem', md: '1.1rem' },
             color: 'text.secondary',
           }}

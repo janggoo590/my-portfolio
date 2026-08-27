@@ -1,0 +1,68 @@
+/**
+ * 전역 스타일 + 컬러 팔레트 디자인 시스템
+ *
+ * 컬러 변수는 "컬러 팔레트 디자인 시스템.md" (AI SEARCH OPTIMIZATION LAB
+ * 이미지 분석 결과) 에서 추출한 값을 그대로 옮긴 것이다.
+ * 원본 디자인이 블랙 베이스이므로 다크 테마가 기본값이다.
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #ddff50;
+  --color-primary-light: #e9ff8d;
+  --color-primary-dark: #9bb238;
+
+  /* Secondary Colors */
+  --color-secondary: #0b0b0b;
+  --color-accent: #cab8f6;
+
+  /* Background Colors */
+  --color-bg-primary: #0b0b0b;
+  --color-bg-secondary: #191919;
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #0b0b0b;
+  --color-text-muted: #919191;
+
+  /* Interactive Colors */
+  --color-button-primary: #ddff50;
+  --color-button-hover: #bcd944;
+  --color-link: #cab8f6;
+  --color-link-hover: #a293c5;
+}
+
+/* CSS 초기화 */
+* {
+  box-sizing: border-box;
+}
+
+/* HTML, Body 초기화 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* Root 앱 컨테이너 설정 */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--color-link);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}

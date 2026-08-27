@@ -1,0 +1,44 @@
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import PageShell from '../components/common/page-shell.jsx';
+
+/**
+ * ProjectsPage 컴포넌트
+ *
+ * Projects 상세 페이지의 자리표시자. 추후 포트폴리오 작품들이 들어갈 공간이다.
+ *
+ * Props: 없음
+ *
+ * Example usage:
+ * <ProjectsPage />
+ */
+function ProjectsPage() {
+  return (
+    <PageShell maxWidth="md">
+      <Typography
+        variant="h1"
+        sx={{ fontSize: { xs: '2rem', md: '3rem' }, fontWeight: 700, color: 'secondary.main' }}
+      >
+        Projects
+      </Typography>
+
+      <Card
+        elevation={0}
+        sx={{
+          borderRadius: 3,
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          bgcolor: 'background.paper',
+        }}
+      >
+        <CardContent sx={{ p: { xs: 3, md: 5 } }}>
+          <Typography sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.6, color: 'grey.300' }}>
+            Projects 페이지가 개발될 공간입니다. 포트폴리오 작품들이 들어갈 예정입니다.
+          </Typography>
+        </CardContent>
+      </Card>
+    </PageShell>
+  );
+}
+
+export default ProjectsPage;

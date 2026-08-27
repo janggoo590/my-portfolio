@@ -40,7 +40,7 @@ function SkillTreeSection() {
               variant="determinate"
               value={skill.value}
               color="secondary"
-              sx={{ height: 8, borderRadius: 4, bgcolor: 'rgba(255, 255, 255, 0.08)' }}
+              sx={{ height: 8, borderRadius: 4, bgcolor: 'rgba(11, 11, 11, 0.08)' }}
             />
           </Box>
         ))}

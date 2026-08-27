@@ -27,12 +27,13 @@ function ProjectsPage() {
         elevation={0}
         sx={{
           borderRadius: 3,
-          border: '1px solid rgba(255, 255, 255, 0.1)',
+          border: '1px solid',
+          borderColor: 'divider',
           bgcolor: 'background.paper',
         }}
       >
         <CardContent sx={{ p: { xs: 3, md: 5 } }}>
-          <Typography sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.6, color: 'grey.300' }}>
+          <Typography sx={{ fontSize: { xs: '1rem', md: '1.125rem' }, lineHeight: 1.6, color: 'text.secondary' }}>
             Projects 페이지가 개발될 공간입니다. 포트폴리오 작품들이 들어갈 예정입니다.
           </Typography>
         </CardContent>

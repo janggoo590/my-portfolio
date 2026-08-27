@@ -2,8 +2,9 @@
  * 전역 스타일 + 컬러 팔레트 디자인 시스템
  *
  * 컬러 변수는 "컬러 팔레트 디자인 시스템.md" (AI SEARCH OPTIMIZATION LAB
- * 이미지 분석 결과) 에서 추출한 값을 그대로 옮긴 것이다.
- * 원본 디자인이 블랙 베이스이므로 다크 테마가 기본값이다.
+ * 이미지 분석 결과) 에서 추출한 값을 옮긴 것이다.
+ * 배경은 화이트(#fff) 라이트 모드를 사용하므로, 팔레트 가이드의 라이트 모드
+ * 지침에 따라 배경/기본 텍스트 변수만 반전하고 Primary(라임)/Accent(라벤더)는 유지한다.
  */
 
 :root {
@@ -16,14 +17,14 @@
   --color-secondary: #0b0b0b;
   --color-accent: #cab8f6;
 
-  /* Background Colors */
-  --color-bg-primary: #0b0b0b;
-  --color-bg-secondary: #191919;
+  /* Background Colors (라이트 모드) */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f5f5f5;
 
-  /* Text Colors */
-  --color-text-primary: #ffffff;
+  /* Text Colors (라이트 모드) */
+  --color-text-primary: #0b0b0b;
   --color-text-secondary: #0b0b0b;
-  --color-text-muted: #919191;
+  --color-text-muted: #5f5f5f;
 
   /* Interactive Colors */
   --color-button-primary: #ddff50;

@@ -20,6 +20,7 @@ import Typography from '@mui/material/Typography';
  * @param {string} accent - 강조 컬러 키 ('primary' | 'secondary') [Optional, 기본값: 'primary']
  * @param {string} variant - 배경 처리 ('plain' | 'filled' | 'dark' | 'light') [Optional, 기본값: 'plain']
  * @param {string} titleColor - 제목 색상 override (MUI 팔레트 경로) [Optional]
+ * @param {object} badgeSx - 태그 라벨 배지의 sx override (기본 팔레트 대신 사용) [Optional]
  * @param {React.ReactNode} children - 설명 아래에 추가로 렌더링할 요소(버튼 등) [Optional]
  *
  * Example usage:
@@ -32,13 +33,22 @@ import Typography from '@mui/material/Typography';
  */
 const BADGE_PALETTE = [
   { bgcolor: 'primary.main', color: 'primary.contrastText' },
-  { bgcolor: 'secondary.main', color: 'secondary.contrastText' },
+  { bgcolor: '#ff9e99', color: 'text.primary' },
   { bgcolor: 'accents.cyan', color: 'text.primary' },
   { bgcolor: 'accents.peach', color: 'text.primary' },
   { bgcolor: 'accents.mint', color: 'text.primary' },
 ];
 
-function SectionCard({ index, title, description, accent = 'primary', variant = 'plain', titleColor, children }) {
+function SectionCard({
+  index,
+  title,
+  description,
+  accent = 'primary',
+  variant = 'plain',
+  titleColor,
+  badgeSx,
+  children,
+}) {
   const accentColor = `${accent}.main`;
   const isFilled = variant === 'filled';
   const isDark = variant === 'dark';
@@ -67,10 +77,17 @@ function SectionCard({ index, title, description, accent = 'primary', variant = 
     },
   }[variant];
 
-  /** 검정 배경(dark) 카드에서는 포인트 컬러를 라임(primary.main #ddff50) 으로 고정한다. */
-  const badgeSx = isDark
-    ? { bgcolor: 'primary.main', color: 'primary.contrastText' }
-    : BADGE_PALETTE[(index - 1) % BADGE_PALETTE.length];
+  /**
+   * 배지 스타일 우선순위:
+   * 1) badgeSx prop 이 주어지면 그대로 사용
+   * 2) 검정 배경(dark) 카드는 포인트 컬러를 라임(primary.main #ddff50) 으로 고정
+   * 3) 그 외에는 index 에 따라 BADGE_PALETTE 를 순환
+   */
+  const resolvedBadgeSx =
+    badgeSx ??
+    (isDark
+      ? { bgcolor: 'primary.main', color: 'primary.contrastText' }
+      : BADGE_PALETTE[(index - 1) % BADGE_PALETTE.length]);
 
   const descColor = isFilled
     ? `${accent}.contrastText`
@@ -112,7 +129,7 @@ function SectionCard({ index, title, description, accent = 'primary', variant = 
               px: 1.5,
               py: 0.5,
               borderRadius: 999,
-              ...badgeSx,
+              ...resolvedBadgeSx,
             }}
           >
             {tagLabel}

@@ -29,6 +29,12 @@ function ContactSection() {
       title="Contact"
       accent="secondary"
       variant="filled"
+      badgeSx={{
+        /** 배지 배경 = 카드 background(secondary.main) 을 자기 자신과 곱한(multiply) 값 */
+        bgcolor: 'secondary.main',
+        color: 'text.primary',
+        mixBlendMode: 'multiply',
+      }}
       description="여기는 Contact 섹션입니다. 연락처, SNS, 간단한 메시지 폼이 들어갈 예정입니다."
     >
       <Stack spacing={2} sx={{ maxWidth: 420 }}>
@@ -48,6 +54,8 @@ function ContactSection() {
             disabled
             sx={{
               fontWeight: 700,
+              borderRadius: 999,
+              px: 3,
               bgcolor: 'interactive.buttonDark',
               color: 'surface.onDarkText',
               '&.Mui-disabled': {

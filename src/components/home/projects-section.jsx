@@ -10,7 +10,7 @@ import SectionCard from './section-card.jsx';
  *
  * Home 페이지 4번 섹션. 대표작 썸네일 3~4개와 '더 보기' 버튼의 자리표시자.
  * 썸네일 자리는 비어 있는 박스로 표시하고, 버튼은 Projects 페이지로 이동한다.
- * 밝은 배경 카드이므로 테두리 대비는 primary.dark(#9bb238) 로 확보한다.
+ * 흰색 배경 카드(light variant)로 두고, 썸네일 테두리 대비는 primary.dark(#9bb238) 로 확보한다.
  *
  * Props: 없음
  *
@@ -27,7 +27,7 @@ function ProjectsSection() {
       index={4}
       title="Projects"
       accent="primary"
-      variant="plain"
+      variant="light"
       description="여기는 Projects 섹션입니다. 대표작 썸네일 3-4개와 '더 보기' 버튼이 들어갈 예정입니다."
     >
       <Grid container spacing={2}>
@@ -58,7 +58,19 @@ function ProjectsSection() {
           variant="contained"
           color="primary"
           onClick={() => navigate('/projects')}
-          sx={{ fontWeight: 700, color: 'primary.contrastText' }}
+          sx={{
+            fontWeight: 700,
+            borderRadius: 999,
+            px: 3,
+            border: '1px solid',
+            borderColor: 'text.primary',
+            bgcolor: 'text.primary',
+            color: 'background.default',
+            '&:hover': {
+              bgcolor: 'background.default',
+              color: 'text.primary',
+            },
+          }}
         >
           더 보기
         </Button>

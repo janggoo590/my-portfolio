@@ -78,9 +78,29 @@ const theme = createTheme({
   spacing: 8,
   components: {
     MuiButton: {
+      defaultProps: {
+        /** 모든 버튼의 기본 그림자 제거 */
+        disableElevation: true,
+      },
       styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          /** 마우스를 올리고 뗄 때 색상이 0.3초 동안 부드럽게 전환된다 */
+          transition:
+            'background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease',
+          '&:hover': { boxShadow: 'none' },
+        },
+        /**
+         * contained + primary 버튼: 기본은 라임 배경 / 다크 글자,
+         * hover 시 배경·글자 색을 서로 반전한다.
+         */
         containedPrimary: {
-          '&:hover': { backgroundColor: '#c7e63f' },
+          backgroundColor: '#ddff50',
+          color: '#0b0b0b',
+          '&:hover': {
+            backgroundColor: '#0b0b0b',
+            color: '#ddff50',
+          },
         },
       },
     },

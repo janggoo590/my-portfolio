@@ -12,7 +12,7 @@ import Tab from '@mui/material/Tab';
  *
  * 상단 고정 네비게이션. Home / About Me / Projects 3개 탭을 제공하며
  * 현재 경로에 맞는 탭을 활성화한다. 탭 클릭 시 React Router 로 이동한다.
- * 화이트 베이스 팔레트에 맞춰 흰 배경 + 얇은 하단 테두리, 블랙 텍스트를 사용한다.
+ * 검은색 배경 + 얇은 하단 테두리, 흰색 텍스트를 사용한다.
  *
  * Props: 없음
  *
@@ -42,9 +42,9 @@ function NavBar() {
       position="sticky"
       elevation={0}
       sx={{
-        bgcolor: 'background.default',
+        bgcolor: 'surface.dark',
         borderBottom: '1px solid',
-        borderColor: 'border.light',
+        borderColor: 'border.onDark',
       }}
     >
       <Container maxWidth="lg" sx={{ px: { xs: 2, md: 3 } }}>
@@ -78,7 +78,7 @@ function NavBar() {
               variant="h6"
               sx={{
                 fontWeight: 700,
-                color: 'text.primary',
+                color: 'surface.onDarkText',
                 fontSize: { xs: '1.1rem', md: '1.25rem' },
               }}
             >
@@ -94,11 +94,11 @@ function NavBar() {
             sx={{
               minHeight: 48,
               '& .MuiTab-root': {
-                color: 'text.secondary',
+                color: 'rgba(255, 255, 255, 0.7)',
                 fontWeight: 600,
                 minHeight: 48,
               },
-              '& .MuiTab-root.Mui-selected': { color: 'text.primary' },
+              '& .MuiTab-root.Mui-selected': { color: 'surface.onDarkText' },
               '& .MuiTabs-indicator': { backgroundColor: 'primary.main', height: 3 },
             }}
           >

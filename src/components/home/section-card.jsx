@@ -7,7 +7,9 @@ import Typography from '@mui/material/Typography';
  * SectionCard 컴포넌트
  *
  * Home 페이지의 각 섹션(Hero, About Me, Skill Tree, Projects, Contact)을
- * 동일한 형태로 감싸는 공통 카드. 상단에 섹션 순번 배지와 제목, 아래에 설명 텍스트를 둔다.
+ * 동일한 형태로 감싸는 공통 카드. 상단에 '01 / HERO' 형태의 둥근 태그 라벨을 두고,
+ * 그 아래 줄에 굵은 제목, 다시 아래에 설명 텍스트를 둔다.
+ * 태그 라벨 색상은 index 에 따라 BADGE_PALETTE 를 순환하여 카드마다 다르게 표시한다.
  * "컬러 팔레트 디자인 시스템.md" 의 위계 규칙(라임 = 시선 집중 / 다크 블록 = 신뢰·실적 /
  * 라벤더 = 프로세스 강조)에 따라 variant 로 배경 처리를 바꾼다.
  *
@@ -16,13 +18,27 @@ import Typography from '@mui/material/Typography';
  * @param {string} title - 섹션 제목 [Required]
  * @param {string} description - 섹션 역할 설명 텍스트 [Required]
  * @param {string} accent - 강조 컬러 키 ('primary' | 'secondary') [Optional, 기본값: 'primary']
- * @param {string} variant - 배경 처리 ('plain' | 'filled' | 'dark') [Optional, 기본값: 'plain']
+ * @param {string} variant - 배경 처리 ('plain' | 'filled' | 'dark' | 'light') [Optional, 기본값: 'plain']
+ * @param {string} titleColor - 제목 색상 override (MUI 팔레트 경로) [Optional]
  * @param {React.ReactNode} children - 설명 아래에 추가로 렌더링할 요소(버튼 등) [Optional]
  *
  * Example usage:
  * <SectionCard index={1} title="Hero" description="..." accent="primary" variant="filled" />
  */
-function SectionCard({ index, title, description, accent = 'primary', variant = 'plain', children }) {
+/**
+ * 배지(태그 라벨) 컬러 팔레트.
+ * theme.js 의 primary/secondary/accents 토큰을 활용해 카드마다 다른 색을 순환시킨다.
+ * 모두 밝은 파스텔 계열이므로 글자색은 어두운 text.primary 로 통일해 대비를 확보한다.
+ */
+const BADGE_PALETTE = [
+  { bgcolor: 'primary.main', color: 'primary.contrastText' },
+  { bgcolor: 'secondary.main', color: 'secondary.contrastText' },
+  { bgcolor: 'accents.cyan', color: 'text.primary' },
+  { bgcolor: 'accents.peach', color: 'text.primary' },
+  { bgcolor: 'accents.mint', color: 'text.primary' },
+];
+
+function SectionCard({ index, title, description, accent = 'primary', variant = 'plain', titleColor, children }) {
   const accentColor = `${accent}.main`;
   const isFilled = variant === 'filled';
   const isDark = variant === 'dark';
@@ -43,13 +59,18 @@ function SectionCard({ index, title, description, accent = 'primary', variant = 
       borderColor: 'border.onDark',
       color: 'surface.onDarkText',
     },
+    light: {
+      bgcolor: 'background.default',
+      borderColor: 'text.primary',
+      borderWidth: 2,
+      color: 'text.primary',
+    },
   }[variant];
 
-  const badgeSx = {
-    plain: { bgcolor: accentColor, color: `${accent}.contrastText` },
-    filled: { bgcolor: 'rgba(11, 11, 11, 0.12)', color: `${accent}.contrastText` },
-    dark: { bgcolor: accentColor, color: `${accent}.contrastText` },
-  }[variant];
+  /** 검정 배경(dark) 카드에서는 포인트 컬러를 라임(primary.main #ddff50) 으로 고정한다. */
+  const badgeSx = isDark
+    ? { bgcolor: 'primary.main', color: 'primary.contrastText' }
+    : BADGE_PALETTE[(index - 1) % BADGE_PALETTE.length];
 
   const descColor = isFilled
     ? `${accent}.contrastText`
@@ -57,38 +78,51 @@ function SectionCard({ index, title, description, accent = 'primary', variant = 
       ? 'rgba(255, 255, 255, 0.72)'
       : 'text.primary';
 
+  const resolvedTitleColor =
+    titleColor ??
+    (isDark
+      ? 'surface.onDarkText'
+      : isFilled
+        ? `${accent}.contrastText`
+        : 'text.primary');
+
+  const tagLabel = `${String(index).padStart(2, '0')} / ${title.toUpperCase()}`;
+
   return (
     <Card
       component="section"
       elevation={0}
       sx={{
         width: '100%',
-        borderRadius: 3,
+        borderRadius: '20px',
         border: '1px solid',
         ...cardSx,
       }}
     >
       <CardContent sx={{ p: { xs: 3, md: 4 } }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1.25, mb: 1.5 }}>
           <Box
             sx={{
-              fontSize: { xs: '0.75rem', md: '0.8rem' },
+              display: 'inline-flex',
+              alignItems: 'center',
+              fontSize: { xs: '0.7rem', md: '0.75rem' },
               fontWeight: 700,
-              letterSpacing: 1,
-              px: 1,
-              py: 0.25,
-              borderRadius: 1,
+              letterSpacing: 1.5,
+              textTransform: 'uppercase',
+              px: 1.5,
+              py: 0.5,
+              borderRadius: 999,
               ...badgeSx,
             }}
           >
-            {String(index).padStart(2, '0')}
+            {tagLabel}
           </Box>
           <Typography
             variant="h2"
             sx={{
               fontSize: { xs: '1.5rem', md: '2rem' },
-              fontWeight: 700,
-              color: isFilled ? `${accent}.contrastText` : accentColor,
+              fontWeight: 800,
+              color: resolvedTitleColor,
             }}
           >
             {title}

@@ -22,13 +22,14 @@ function AboutSection() {
       title="About Me"
       accent="primary"
       variant="plain"
+      titleColor="text.primary"
       description="여기는 About Me 섹션입니다. 간단한 자기소개와 '더 알아보기' 버튼이 들어갈 예정입니다."
     >
       <Button
         variant="contained"
         color="primary"
         onClick={() => navigate('/about')}
-        sx={{ fontWeight: 700, color: 'primary.contrastText' }}
+        sx={{ fontWeight: 700, borderRadius: 999, px: 3 }}
       >
         더 알아보기
       </Button>

@@ -29,7 +29,19 @@ function AboutSection() {
         variant="contained"
         color="primary"
         onClick={() => navigate('/about')}
-        sx={{ fontWeight: 700, borderRadius: 999, px: 3 }}
+        sx={{
+          fontWeight: 700,
+          borderRadius: 999,
+          px: 3,
+          border: '1px solid',
+          borderColor: 'text.primary',
+          bgcolor: 'text.primary',
+          color: 'background.default',
+          '&:hover': {
+            bgcolor: 'background.default',
+            color: 'text.primary',
+          },
+        }}
       >
         더 알아보기
       </Button>

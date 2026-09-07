@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# 환경 변수 (Supabase 키)
+.env
+.env.*
+!.env.example
+
 # Claude Code local settings
 .claude/settings.local.json
 

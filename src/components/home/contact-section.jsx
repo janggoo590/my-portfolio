@@ -1,27 +1,22 @@
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import SectionCard from './section-card.jsx';
+import ContactInfo from './contact-info.jsx';
+import Guestbook from './guestbook.jsx';
 
 /**
  * ContactSection 컴포넌트
  *
- * Home 페이지 5번 섹션. 연락처 / SNS / 간단한 메시지 폼의 자리표시자.
+ * Home 페이지 5번 섹션. 연락처(이메일 + SNS)를 위에, 방명록을 아래에 배치한다.
  * "컬러 팔레트 디자인 시스템.md" 의 "라벤더는 서브 섹션 1곳으로 제한" 규칙에 따라
- * 이 섹션만 라벤더(secondary) 배경으로 채운다. 폼은 비활성화 상태로 형태만 보여준다.
+ * 이 섹션만 라벤더(secondary) 배경으로 채운다.
+ * 방명록은 Supabase 와 직접 연동되어 실제로 작성·조회된다.
  *
  * Props: 없음
  *
  * Example usage:
  * <ContactSection />
  */
-const FIELD_SX = {
-  '& .MuiInputBase-root': { bgcolor: 'rgba(255, 255, 255, 0.65)' },
-  '& .MuiInputLabel-root': { color: 'rgba(11, 11, 11, 0.7)' },
-  '& .MuiOutlinedInput-notchedOutline': { borderColor: 'rgba(11, 11, 11, 0.25)' },
-};
-
 function ContactSection() {
   return (
     <SectionCard
@@ -35,39 +30,13 @@ function ContactSection() {
         color: 'text.primary',
         mixBlendMode: 'multiply',
       }}
-      description="여기는 Contact 섹션입니다. 연락처, SNS, 간단한 메시지 폼이 들어갈 예정입니다."
+      description="궁금한 점이나 제안이 있다면 편하게 연락 주세요. 아래 방명록도 환영합니다."
     >
-      <Stack spacing={2} sx={{ maxWidth: 420 }}>
-        <TextField label="이름" size="small" disabled fullWidth sx={FIELD_SX} />
-        <TextField
-          label="메시지"
-          size="small"
-          disabled
-          fullWidth
-          multiline
-          minRows={2}
-          sx={FIELD_SX}
-        />
-        <Box>
-          <Button
-            variant="contained"
-            disabled
-            sx={{
-              fontWeight: 700,
-              borderRadius: 999,
-              px: 3,
-              bgcolor: 'interactive.buttonDark',
-              color: 'surface.onDarkText',
-              '&.Mui-disabled': {
-                bgcolor: 'rgba(11, 11, 11, 0.45)',
-                color: 'rgba(255, 255, 255, 0.7)',
-              },
-            }}
-          >
-            보내기
-          </Button>
-        </Box>
-      </Stack>
+      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <ContactInfo />
+        <Divider sx={{ my: 3, borderColor: 'rgba(11, 11, 11, 0.15)' }} />
+        <Guestbook />
+      </Box>
     </SectionCard>
   );
 }

@@ -21,6 +21,7 @@ import Typography from '@mui/material/Typography';
  * @param {string} variant - 배경 처리 ('plain' | 'filled' | 'dark' | 'light') [Optional, 기본값: 'plain']
  * @param {string} titleColor - 제목 색상 override (MUI 팔레트 경로) [Optional]
  * @param {object} badgeSx - 태그 라벨 배지의 sx override (기본 팔레트 대신 사용) [Optional]
+ * @param {object} cardSxOverride - variant 로 계산된 카드 배경/테두리 sx 위에 덮어쓸 값 [Optional]
  * @param {React.ReactNode} children - 설명 아래에 추가로 렌더링할 요소(버튼 등) [Optional]
  *
  * Example usage:
@@ -47,6 +48,7 @@ function SectionCard({
   variant = 'plain',
   titleColor,
   badgeSx,
+  cardSxOverride,
   children,
 }) {
   const accentColor = `${accent}.main`;
@@ -114,6 +116,7 @@ function SectionCard({
         borderRadius: '20px',
         border: '1px solid',
         ...cardSx,
+        ...cardSxOverride,
       }}
     >
       <CardContent sx={{ p: { xs: 3, md: 4 } }}>

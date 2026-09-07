@@ -19,6 +19,12 @@ const FIELD_SX = {
   '& .MuiOutlinedInput-notchedOutline': {
     borderColor: 'rgba(11, 11, 11, 0.25)',
   },
+  /** focus(클릭) 상태: 테두리·포커스 링을 어두운 라일락(secondary.dark)으로 표시 */
+  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+    borderColor: 'secondary.dark',
+    borderWidth: 2,
+  },
+  '& .MuiInputLabel-root.Mui-focused': { color: 'secondary.dark' },
 };
 
 /**
@@ -164,9 +170,9 @@ function GuestbookForm({ onSubmit }) {
               fontWeight: 700,
               borderRadius: 999,
               px: 3,
-              bgcolor: 'interactive.buttonDark',
-              color: 'surface.onDarkText',
-              '&:hover': { bgcolor: 'interactive.buttonDark', opacity: 0.9 },
+              bgcolor: 'secondary.main',
+              color: 'secondary.contrastText',
+              '&:hover': { bgcolor: 'secondary.main', opacity: 0.9 },
               '&.Mui-disabled': {
                 bgcolor: 'rgba(11, 11, 11, 0.45)',
                 color: 'rgba(255, 255, 255, 0.7)',

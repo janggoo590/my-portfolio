@@ -24,6 +24,8 @@ function ContactSection() {
       title="Contact"
       accent="secondary"
       variant="filled"
+      /** 카드 배경만 흰색으로 변경 (제목 색상은 기본값 유지) */
+      cardSxOverride={{ bgcolor: '#fff' }}
       badgeSx={{
         /** 배지 배경 = 카드 background(secondary.main) 을 자기 자신과 곱한(multiply) 값 */
         bgcolor: 'secondary.main',

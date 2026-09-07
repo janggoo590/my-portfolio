@@ -37,9 +37,11 @@ function AboutSection() {
           borderColor: 'text.primary',
           bgcolor: 'text.primary',
           color: 'background.default',
+          transition: 'transform 0.2s ease',
           '&:hover': {
-            bgcolor: 'background.default',
-            color: 'text.primary',
+            bgcolor: 'text.primary',
+            color: 'background.default',
+            transform: 'translateY(-2px)',
           },
         }}
       >

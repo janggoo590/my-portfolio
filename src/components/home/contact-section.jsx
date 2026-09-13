@@ -27,12 +27,11 @@ function ContactSection() {
       /** 카드 배경만 흰색으로 변경 (제목 색상은 기본값 유지) */
       cardSxOverride={{ bgcolor: '#fff' }}
       badgeSx={{
-        /** 배지 배경 = 카드 background(secondary.main) 을 자기 자신과 곱한(multiply) 값 */
-        bgcolor: 'secondary.main',
-        color: 'text.primary',
-        mixBlendMode: 'multiply',
+        /** 포인트 컬러 배경 + 흰 글자의 선명한 배지 */
+        bgcolor: '#7b45ff',
+        color: '#ffffff',
       }}
-      description="궁금한 점이나 제안이 있다면 편하게 연락 주세요. 아래 방명록도 환영합니다."
+      description="궁금한 점이나 제안이 있다면 아래의 이메일 또는 방명록을 남겨주세요."
     >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <ContactInfo />

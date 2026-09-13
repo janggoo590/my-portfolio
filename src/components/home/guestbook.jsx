@@ -10,6 +10,9 @@ import {
   createGuestbookEntry,
 } from '../../lib/guestbook-api.js';
 
+/** 방명록 포인트 컬러 (이미지 기준) */
+const POINT_COLOR = '#7b45ff';
+
 /**
  * Guestbook 컴포넌트
  *
@@ -53,29 +56,31 @@ function Guestbook() {
     <Box>
       <Typography
         sx={{
-          fontSize: '0.75rem',
-          fontWeight: 700,
-          letterSpacing: 1.5,
-          textTransform: 'uppercase',
-          color: 'rgba(11, 11, 11, 0.6)',
-          mb: 1,
+          fontWeight: 800,
+          fontSize: { xs: '1.05rem', md: '1.15rem' },
+          color: POINT_COLOR,
+          mb: 0.75,
         }}
       >
-        Guestbook
+        방명록
       </Typography>
-      <Typography sx={{ fontWeight: 800, fontSize: '1.15rem', mb: 2, color: 'text.primary' }}>
-        방명록을 남겨주세요
+      <Typography sx={{ fontSize: '0.85rem', color: 'rgba(11, 11, 11, 0.6)', mb: 2 }}>
+        이름을 비워두면 익명으로 표시됩니다. 이메일 및 정보는 선택하지않으면 비공개로 저장돼요.
       </Typography>
+
+      <Divider sx={{ mb: 3, borderColor: 'rgba(11, 11, 11, 0.15)' }} />
 
       <GuestbookForm onSubmit={handleCreate} />
 
       <Divider sx={{ my: 3, borderColor: 'rgba(11, 11, 11, 0.15)' }} />
 
-      {hasError ? (
-        <Alert severity="error">방명록을 불러오지 못했습니다.</Alert>
-      ) : (
-        <GuestbookList entries={entries} isLoading={isLoading} />
-      )}
+      <Box sx={{ bgcolor: '#f8f6ff', borderRadius: '16px', p: { xs: 2, md: 2.5 } }}>
+        {hasError ? (
+          <Alert severity="error">방명록을 불러오지 못했습니다.</Alert>
+        ) : (
+          <GuestbookList entries={entries} isLoading={isLoading} />
+        )}
+      </Box>
     </Box>
   );
 }

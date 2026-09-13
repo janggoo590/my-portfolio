@@ -4,10 +4,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import EmailIcon from '@mui/icons-material/Email';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
+import emailIcon from '../../assets/icons/email-icon.png';
 
 /**
  * 연락처 정보
@@ -28,7 +28,7 @@ const SOCIAL_LINKS = [
     label: '네이버',
     href: 'https://blog.naver.com',
     icon: (
-      <Box component="span" sx={{ fontWeight: 800, fontSize: '0.95rem', lineHeight: 1 }}>
+      <Box component="span" sx={{ fontWeight: 800, fontSize: '0.85rem', lineHeight: 1 }}>
         N
       </Box>
     ),
@@ -62,28 +62,15 @@ function ContactInfo() {
   };
 
   return (
-    <Stack spacing={2}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25, flexWrap: 'wrap' }}>
-        <Box
-          sx={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 34,
-            height: 34,
-            borderRadius: '50%',
-            bgcolor: 'accents.blue',
-            color: 'text.primary',
-          }}
-        >
-          <EmailIcon fontSize="small" />
-        </Box>
-        <Typography sx={{ fontWeight: 600, color: 'text.primary' }}>
+    <Stack spacing={1.5}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <Box component="img" src={emailIcon} alt="" sx={{ width: 20, height: 20, display: 'block' }} />
+        <Typography sx={{ fontWeight: 700, fontSize: { xs: '0.95rem', md: '1rem' }, color: 'text.primary' }}>
           이메일 :{' '}
           <Box
             component="a"
             href={`mailto:${CONTACT_EMAIL}`}
-            sx={{ color: 'text.primary', textDecorationColor: 'rgba(11, 11, 11, 0.35)' }}
+            sx={{ color: 'text.primary', textDecoration: 'none' }}
           >
             {CONTACT_EMAIL}
           </Box>
@@ -104,7 +91,7 @@ function ContactInfo() {
         </Tooltip>
       </Box>
 
-      <Stack direction="row" spacing={1.5}>
+      <Stack direction="row" spacing={1}>
         {SOCIAL_LINKS.map((social) => (
           <Tooltip key={social.key} title={social.label}>
             <IconButton
@@ -114,14 +101,14 @@ function ContactInfo() {
               rel="noopener noreferrer"
               aria-label={social.label}
               sx={{
-                width: 44,
-                height: 44,
-                bgcolor: 'rgba(255, 255, 255, 0.85)',
+                width: 34,
+                height: 34,
+                bgcolor: '#ffffff',
                 color: social.brandColor,
-                border: '1px solid rgba(11, 11, 11, 0.12)',
+                border: '1px solid rgba(11, 11, 11, 0.2)',
                 transition: 'transform 0.2s ease, background-color 0.2s ease',
                 '&:hover': {
-                  bgcolor: '#ffffff',
+                  bgcolor: 'rgba(11, 11, 11, 0.05)',
                   transform: 'translateY(-2px)',
                 },
               }}

@@ -5,10 +5,13 @@ import { supabase } from './supabase.js';
  *
  * public.guestbook 테이블에 대한 조회/작성을 담당한다.
  * email 컬럼은 DB 컬럼 권한상 조회가 불가능하므로(비공개 저장), 목록 응답에 포함되지 않는다.
+ * 작성자가 "이메일을 방명록에 공개합니다" 를 선택한 경우에만 email_display 컬럼에
+ * 같은 값이 함께 저장되어 목록에 공개적으로 노출된다.
  */
 
-/** 목록/작성에서 공통으로 쓰는 조회 컬럼 (email 제외) */
-const SELECT_COLUMNS = 'id, name, message, affiliation, emoji, created_at';
+/** 목록/작성에서 공통으로 쓰는 조회 컬럼 (비공개 email 제외) */
+const SELECT_COLUMNS =
+  'id, name, message, affiliation, emoji, sns_account, email_display, created_at';
 
 /**
  * 방명록 항목을 최신순으로 조회한다.
@@ -33,7 +36,9 @@ export async function fetchGuestbookEntries() {
  * @param {string} payload.affiliation - 소속/직업 [Optional]
  * @param {string} payload.email - 이메일 (비공개 저장) [Optional]
  * @param {string} payload.emoji - 선택한 이모지 [Optional]
- * @returns {Promise<object>} 생성된 항목 (email 제외)
+ * @param {string} payload.snsAccount - SNS 계정 [Optional]
+ * @param {boolean} payload.isEmailPublic - 이메일을 방명록에 공개할지 여부 [Optional, 기본값: false]
+ * @returns {Promise<object>} 생성된 항목 (비공개 email 제외)
  */
 export async function createGuestbookEntry({
   name,
@@ -41,13 +46,18 @@ export async function createGuestbookEntry({
   affiliation,
   email,
   emoji,
+  snsAccount,
+  isEmailPublic,
 }) {
+  const trimmedEmail = email?.trim() ? email.trim() : null;
   const row = {
     name: name?.trim() ? name.trim() : null,
     message: message.trim(),
     affiliation: affiliation?.trim() ? affiliation.trim() : null,
-    email: email?.trim() ? email.trim() : null,
+    email: trimmedEmail,
     emoji: emoji ?? null,
+    sns_account: snsAccount?.trim() ? snsAccount.trim() : null,
+    email_display: isEmailPublic ? trimmedEmail : null,
   };
 
   const { data, error } = await supabase

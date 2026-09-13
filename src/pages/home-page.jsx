@@ -20,7 +20,7 @@ import ContactSection from '../components/home/contact-section.jsx';
  */
 function HomePage() {
   return (
-    <PageShell maxWidth="md">
+    <PageShell maxWidth="1170px">
       <Box sx={{ textAlign: 'center', mb: { xs: 1, md: 2 } }}>
         <Typography
           variant="h1"

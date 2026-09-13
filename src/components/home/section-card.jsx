@@ -119,7 +119,7 @@ function SectionCard({
         ...cardSxOverride,
       }}
     >
-      <CardContent sx={{ p: { xs: 3, md: 4 } }}>
+      <CardContent sx={{ p: { xs: 3, md: 5 } }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1.25, mb: 1.5 }}>
           <Box
             sx={{
@@ -154,6 +154,7 @@ function SectionCard({
             fontSize: { xs: '1rem', md: '1.125rem' },
             lineHeight: 1.6,
             color: descColor,
+            maxWidth: '640px',
           }}
         >
           {description}
